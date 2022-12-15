@@ -29,28 +29,11 @@ const crearNuevaLinea = (nombre, email) => {
 // Para recorrer todo el árbol del DOM
 const table = document.querySelector('[data-table]')
 
-const listaDeCliente = () => {
-    const promise = new Promise((resolve, reject) => {
-    // Generando una promesa
-    // Clase nativa
-    const http =  new XMLHttpRequest()
-    // Abrir http (método, url)
-    http.open('GET','http://localhost:3000/perfil') // ! server
-    http.send() // Enviamos la petición
-    http.onload = () => {
-    const response = JSON.parse(http.response)
-    // Verificar status de http
-    if (http.status >= 400) {
-      // Error en petición
-      reject(response)
-      } else {
-        // Éxito de ejecución
-        resolve(response)
-      }
-    }
-  })
-  return promise
-}
+// ! FETCH API - LLAMADA AL BACKEND
+// Abre conexión y abre promesa, se transforma a formato JSON
+const listaDeCliente = () => fetch('http://localhost:3000/perfil').then((respuesta) => respuesta.json())
+  
+
 
 listaDeCliente().then((data) => {
   data.forEach(perfil => {
@@ -58,10 +41,6 @@ listaDeCliente().then((data) => {
     table.appendChild(nuevaLinea)
   });
 }).catch((error) => alert('Ocurrió un error.')) // En caso de error
-
-
-
-
 
 // ! CALLBACK HELL - ANIDAR funciones sobre funciones
 // ? https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise PROMISE INFO
