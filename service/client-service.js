@@ -18,8 +18,25 @@ const eliminarUnCliente = (id) => {
   // console.log('eliminar a:', id)
   return fetch(`http://localhost:3000/perfil/${id}`, {
     method: 'DELETE',
-    
   })
+}
+
+const detalleDelCliente = (id) => {
+  return fetch(`http://localhost:3000/perfil/${id}`).then((respuesta) => {
+  return respuesta.json()
+  })
+}
+
+const actualizarUnCliente = (nombre, email, id) => {
+  return fetch(`http://localhost:3000/perfil/${id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({nombre, email})
+  }).then((respuesta) => {
+    return respuesta
+  }).catch((err) => console.log(err) )
 }
 
 export const clientServices = {
@@ -27,5 +44,7 @@ export const clientServices = {
   listaDeCliente,
   crearCliente,
   eliminarUnCliente,
+  detalleDelCliente,
+  actualizarUnCliente,
 }
 

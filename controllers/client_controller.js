@@ -10,7 +10,7 @@ const crearNuevaLinea = (nombre, email, id) => {
     <ul class="table__button-control">
       <li>
         <a
-          href="../screens/editar_cliente.html"
+          href="../screens/editar_cliente.html?id=${id}"
           class="simple-button simple-button--edit"
           >Editar</a
         >
@@ -18,7 +18,7 @@ const crearNuevaLinea = (nombre, email, id) => {
       <li>
         <button
           class="simple-button simple-button--delete"
-          type="button" id = "${id}" 
+          type="button" id="${id}" 
         >
           Eliminar
         </button>
